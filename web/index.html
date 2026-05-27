@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHL Assessment Advisor</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="brand">SHL<span>.</span> Assessment Advisor</div>
+    <div class="catalog-size" id="catalogSize">loading catalog…</div>
+  </header>
+
+  <!-- Settings: the user pastes their own free-tier API key here -->
+  <section class="settings" id="settings">
+    <h2>1 · Connect an AI provider <small>(free tier)</small></h2>
+    <p class="hint">Your key is stored only in this browser and sent as a request
+      header. It is never saved on the server.</p>
+    <div class="settings-row">
+      <label>Provider
+        <select id="provider">
+          <option value="groq">Groq (fastest free tier)</option>
+          <option value="gemini">Google Gemini</option>
+          <option value="openrouter">OpenRouter</option>
+        </select>
+      </label>
+      <label>Model
+        <input id="model" type="text" placeholder="auto" />
+      </label>
+    </div>
+    <label>API key
+      <input id="apiKey" type="password" placeholder="paste your key here" />
+    </label>
+    <div class="settings-actions">
+      <button id="saveKey">Save &amp; start chatting</button>
+      <span id="keyStatus" class="status"></span>
+    </div>
+    <p class="links">
+      Get a free key:
+      <a href="https://console.groq.com/keys" target="_blank">Groq</a> ·
+      <a href="https://aistudio.google.com/apikey" target="_blank">Gemini</a> ·
+      <a href="https://openrouter.ai/keys" target="_blank">OpenRouter</a>
+    </p>
+  </section>
+
+  <!-- Chat -->
+  <section class="chat-wrap">
+    <div class="chat-toolbar">
+      <h2>2 · Describe your hiring need</h2>
+      <button id="resetChat" class="ghost">New conversation</button>
+    </div>
+    <div id="chat" class="chat"></div>
+    <div class="turn-meter" id="turnMeter"></div>
+    <form id="composer" class="composer">
+      <input id="input" type="text" autocomplete="off"
+             placeholder="e.g. Hiring a mid-level Java developer who works with stakeholders" />
+      <button id="send" type="submit">Send</button>
+    </form>
+    <div class="examples">
+      Try:
+      <button class="chip" data-q="I need an assessment">vague query</button>
+      <button class="chip" data-q="Hiring a mid-level Java developer who works with stakeholders, ~4 years">Java developer</button>
+      <button class="chip" data-q="What is the difference between OPQ32r and Verify numerical reasoning?">compare</button>
+      <button class="chip" data-q="What's the weather today?">off-topic</button>
+    </div>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
